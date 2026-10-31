@@ -1,0 +1,90 @@
+{
+  "name": "DEV FIXTURE - synthetic data, fictional clubs and players, never shown in production",
+  "matches": [
+    {
+      "round": "Matchday 1",
+      "date": "2025-08-16",
+      "time": "15:00 UTC+1",
+      "team1": "Northbridge FC",
+      "team2": "Eastport",
+      "score": { "ht": [1, 0], "ft": [2, 1] },
+      "goals1": [
+        { "name": "Ada OKAFOR", "minute": "12" },
+        { "name": "Theo Marsh", "minute": "45+2", "owngoal": true }
+      ],
+      "goals2": [{ "name": "Luis Peña", "minute": "77", "penalty": true }],
+      "ground": "Northbridge Park",
+      "attendance": 30120,
+      "lineup": [
+        {
+          "starter": [
+            { "name": "Ada OKAFOR", "captain": true }, { "name": "Ben Hale" }, { "name": "Cal Ives" }, { "name": "Dan Joyce" },
+            { "name": "Eli Kerr" }, { "name": "Finn Lowe" }, { "name": "Gus Moss" }, { "name": "Hal Nunn" },
+            { "name": "Ian Orr" }, { "name": "Jay Page" }, { "name": "Kit Quinn" }
+          ],
+          "bench": [{ "name": "Lee Rhodes" }, { "name": "Max Sutton" }, { "name": "Ned Tate" }],
+          "subs": [
+            { "on": "Lee Rhodes", "off": "Ben Hale", "minute": "60" },
+            { "on": "Max Sutton", "off": "Lee Rhodes", "minute": "85" }
+          ]
+        },
+        {
+          "starter": [
+            { "name": "Luis Peña", "captain": true }, { "name": "Theo Marsh" }, { "name": "Oli Vance" }, { "name": "Pip Wade" },
+            { "name": "Ray Xu" }, { "name": "Sam Young" }, { "name": "Tom Zeller" }, { "name": "Uma Abbott" },
+            { "name": "Vic Bloom" }, { "name": "Wes Cole" }, { "name": "Xan Drew" }
+          ],
+          "bench": [{ "name": "Yan Ellis" }],
+          "subs": []
+        }
+      ],
+      "bookings": [
+        [{ "type": "Y", "name": "Cal Ives", "minute": "30" }],
+        [
+          { "type": "Y", "name": "Oli Vance", "minute": "40" },
+          { "type": "Y/R", "name": "Oli Vance", "minute": "70" }
+        ]
+      ],
+      "referees": [{ "name": "Ref One" }]
+    },
+    {
+      "round": "Matchday 2",
+      "date": "2025-08-23",
+      "time": "20:00 UTC+1",
+      "team1": "Eastport",
+      "team2": "Northbridge FC",
+      "score": { "ht": [0, 0], "ft": [1, 1], "et": [1, 1], "p": [4, 3] },
+      "goals1": [{ "name": "Luis Peña", "minute": "105" }],
+      "goals2": [{ "name": "Ada OKAFOR", "minute": "100" }],
+      "lineup": [
+        {
+          "starter": [
+            { "name": "Luis Peña" }, { "name": "Theo Marsh" }, { "name": "Oli Vance" }, { "name": "Pip Wade" },
+            { "name": "Ray Xu" }, { "name": "Sam Young" }, { "name": "Tom Zeller" }, { "name": "Uma Abbott" },
+            { "name": "Vic Bloom" }, { "name": "Wes Cole" }, { "name": "Xan Drew" }
+          ],
+          "bench": [{ "name": "Yan Ellis" }],
+          "subs": [{ "on": "Yan Ellis", "off": "Xan Drew", "minute": "91" }]
+        },
+        {
+          "starter": [
+            { "name": "Ada OKAFOR" }, { "name": "Ben Hale" }, { "name": "Cal Ives" }, { "name": "Dan Joyce" },
+            { "name": "Eli Kerr" }, { "name": "Finn Lowe" }, { "name": "Gus Moss" }, { "name": "Hal Nunn" },
+            { "name": "Ian Orr" }, { "name": "Jay Page" }, { "name": "Kit Quinn" }
+          ],
+          "bench": [],
+          "subs": []
+        }
+      ],
+      "bookings": [[{ "type": "R", "name": "Wes Cole", "minute": "50" }], []]
+    },
+    {
+      "round": "Matchday 3",
+      "date": "2025-08-30",
+      "team1": "Northbridge FC",
+      "team2": "Westvale",
+      "goals1": [],
+      "goals2": []
+    }
+  ]
+}

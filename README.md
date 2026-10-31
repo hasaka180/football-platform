@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Beyond the Score (working title)
 
-## Getting Started
+A football intelligence platform by Darwin Corp: statistics shown with the
+context behind them. Built to run at **$0/month** on free, properly licensed data.
 
-First, run the development server:
+> Status: Phase 1 (foundation). Not deployed. See `docs/ROADMAP.md`.
+
+## Quick start
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run ingest   # fetch real data (openfootball, CC0) into .data/snapshot.tar.gz
+npm run dev      # http://localhost:3000   (admin: /admin, open in dev)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+No accounts or keys are needed. Optional settings are in `.env.example`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | What it does |
+|---|---|
+| `npm run ingest` | Migrate and ingest configured seasons (local snapshot, or `DATABASE_URL`). Add `-- --switch-source` to move a season to another source. |
+| `npm test` | 40 unit and integration tests (fixtures and PGlite; no network) |
+| `npm run typecheck` / `npm run lint` | TypeScript / ESLint |
+| `npm run build` | Production build (needs the snapshot or `DATABASE_URL`) |
 
-## Learn More
+## What's real
 
-To learn more about Next.js, take a look at the following resources:
+- **2025/26 Premier League:** all 380 matches with lineups, substitutions,
+  goals and cards, from openfootball (CC0). Player stats and the table are
+  derived from these.
+- **2026/27 Premier League:** fixtures and scores from openfootball, which can
+  lag by weeks. football-data.org takes over once a key is set.
+- **Not available:** assists, positions, age and nationality, shots, passes,
+  xG, live scores, photos and crests. The site says so instead of showing zeros.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Synthetic test data lives only in `tests/fixtures` and is never shown.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Docs
 
-## Deploy on Vercel
+| | |
+|---|---|
+| [PRODUCT](docs/PRODUCT.md) | Positioning, competitive review, personas, metrics, MVP scope, risks |
+| [FREE_DATA_PROVIDERS](docs/FREE_DATA_PROVIDERS.md) | Provider evaluation and capability matrix |
+| [LICENSING](docs/LICENSING.md) | Data-rights registry, media and trademark rules |
+| [ARCHITECTURE](docs/ARCHITECTURE.md) · [DATABASE](docs/DATABASE.md) | System design and schema |
+| [DATA_GOVERNANCE](docs/DATA_GOVERNANCE.md) | Identity, corrections, missing data, validation |
+| [COST_MODEL](docs/COST_MODEL.md) | Free tiers, scaling assumptions, guardrails |
+| [SECURITY](docs/SECURITY.md) · [ACCESSIBILITY](docs/ACCESSIBILITY.md) · [SEO](docs/SEO.md) | Controls and rules |
+| [DEPLOYMENT](docs/DEPLOYMENT.md) · [ROADMAP](docs/ROADMAP.md) · [DECISIONS](docs/DECISIONS.md) | Operations and plans |
+| [EDITORIAL_POLICY](docs/EDITORIAL_POLICY.md) | Principles for the Journal (Phase 3) |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Match data: openfootball (CC0).

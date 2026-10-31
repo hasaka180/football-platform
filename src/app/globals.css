@@ -1,26 +1,109 @@
 @import "tailwindcss";
 
+/*
+ * Design tokens. Glass on deep navy: translucent surfaces over a lit
+ * background, one lime accent. `--a` and `--b` are reserved for "player A vs
+ * player B" and are a colour-blind-safe pair (blue / orange); they never carry
+ * meaning alone.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #060a1c;
+  --surface: rgba(255, 255, 255, 0.055);
+  --surface-2: rgba(255, 255, 255, 0.1);
+  --line: rgba(255, 255, 255, 0.1);
+  --line-strong: rgba(255, 255, 255, 0.2);
+  --text: #f4f6ff;
+  --muted: #b2b9d3;
+  --faint: #8d95b3;
+  --accent: #d6f25a;
+  --accent-ink: #11140a;
+  --a: #5aaeff;
+  --b: #ff9f43;
+  --good: #5be39a;
+  --warn: #f5c75b;
+  --bad: #ff6f7d;
+  --glow-1: rgba(70, 104, 255, 0.38);
+  --glow-2: rgba(40, 200, 255, 0.16);
+  --glow-3: rgba(128, 76, 255, 0.2);
+  color-scheme: dark;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-a: var(--a);
+  --color-b: var(--b);
+  --color-good: var(--good);
+  --color-warn: var(--warn);
+  --color-bad: var(--bad);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+html { background: var(--bg); }
 
+/* The lit stadium atmosphere: coloured glows over navy, fixed behind content. */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text);
+  font-family: var(--font-sans);
+  background:
+    radial-gradient(62rem 42rem at 12% -12%, var(--glow-1), transparent 62%),
+    radial-gradient(52rem 38rem at 96% 6%, var(--glow-2), transparent 60%),
+    radial-gradient(46rem 34rem at 55% 112%, var(--glow-3), transparent 62%),
+    linear-gradient(180deg, #0b1440 0%, #070c24 48%, #050819 100%);
+  background-attachment: fixed;
+}
+
+/* Faint pitch markings: an original illustration, not photography. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.11;
+  background: no-repeat center 18% / min(1400px, 140vw) auto url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1050 680' fill='none' stroke='white' stroke-width='3'%3E%3Crect x='10' y='10' width='1030' height='660' rx='4'/%3E%3Cline x1='525' y1='10' x2='525' y2='670'/%3E%3Ccircle cx='525' cy='340' r='92'/%3E%3Ccircle cx='525' cy='340' r='4' fill='white'/%3E%3Crect x='10' y='138' width='165' height='404'/%3E%3Crect x='10' y='248' width='55' height='184'/%3E%3Crect x='875' y='138' width='165' height='404'/%3E%3Crect x='985' y='248' width='55' height='184'/%3E%3Cpath d='M175 266a92 92 0 0 1 0 148M875 266a92 92 0 0 0 0 148'/%3E%3C/svg%3E");
+  mask-image: radial-gradient(ellipse at 50% 30%, black 30%, transparent 75%);
+}
+
+/*
+ * Glass. Every surface token gets a frosted panel: a soft top-light gradient,
+ * a hairline inner highlight and a backdrop blur.
+ */
+.bg-surface, .glass {
+  background-image: linear-gradient(140deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.025) 55%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 24px 60px -28px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(22px) saturate(150%);
+  -webkit-backdrop-filter: blur(22px) saturate(150%);
+}
+.bg-surface-2 {
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+}
+.glass { background-color: var(--surface); border: 1px solid var(--line); }
+
+/* Accessibility and support fallbacks: solid panels instead of see-through ones. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root { --surface: #121a3d; --surface-2: #1a2350; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  :root { --surface: #121a3d; --surface-2: #1a2350; }
+  .bg-surface, .bg-surface-2, .glass { backdrop-filter: none; -webkit-backdrop-filter: none; }
+}
+
+/* Numbers line up in tables and stat blocks. */
+.tabular { font-variant-numeric: tabular-nums; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }

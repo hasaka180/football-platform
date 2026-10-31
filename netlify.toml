@@ -1,0 +1,11 @@
+# Netlify build settings. Each deploy fetches fresh data (openfootball, plus
+# football-data.org when FOOTBALL_DATA_API_KEY is set in the Netlify UI), bakes
+# it into .data/snapshot.tar.gz, then builds. A daily scheduled rebuild keeps
+# results current (see .github/workflows/refresh.yml).
+[build]
+  command = "npm run ingest && npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NEXT_TELEMETRY_DISABLED = "1"
