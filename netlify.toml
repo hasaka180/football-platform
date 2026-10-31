@@ -9,3 +9,8 @@
 [build.environment]
   NODE_VERSION = "20"
   NEXT_TELEMETRY_DISABLED = "1"
+
+# Declared explicitly: without it Netlify published .next as plain static
+# files (no server functions) and every page returned 404.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
